@@ -12,6 +12,7 @@ import MyAppliactions from "../pages/MyApplications/MyAppliactions";
 import AddJob from "../pages/AddJob/AddJob";
 import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
 import ViewApplications from "../pages/ViewApplications/ViewApplications";
+import AllJob from "../pages/AllJob/AllJob";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/jobs",
+        element: <AllJob></AllJob>,
+      },
+      {
         path: "jobs/:id",
         element: (
           <PrivateRoute>
@@ -30,7 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://job-server-zeta.vercel.app/jobs/${params.id}`),
+          fetch(`https://job-portal-27e9b.web.app/jobs/${params.id}`),
       },
       {
         path: "jobApply/:id",
@@ -71,7 +76,7 @@ const router = createBrowserRouter([
             <ViewApplications></ViewApplications>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`https://job-server-zeta.vercel.app/job-applications/jobs/${params.job_id}`)
+        loader: ({params}) => fetch(`https://job-portal-27e9b.web.app/job-applications/jobs/${params.job_id}`)
       },
       {
         path: "register",

@@ -28,7 +28,7 @@ const SignIn = (props) => {
         console.log(result.user.email);
         // const user = {email: result.user.email}
         
-        // axios.post('https://job-server-zeta.vercel.app/jwt', user, { withCredentials: true})
+        // axios.post('https://job-portal-27e9b.web.app/jwt', user, { withCredentials: true})
         // .then(res => {
         //   console.log(res.data);
         // })

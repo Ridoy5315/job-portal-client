@@ -1,33 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useAuth from "../../hooks/useAuth";
 
 const AddJob = (props) => {
+  const { user } = useAuth();
 
-     const handleAddJob = e => {
-          e.preventDefault();
-          
-          const formData = new FormData(e.target);
-          const initialData = Object.fromEntries(formData.entries());
-          console.log(initialData);
+  const handleAddJob = (e) => {
+    e.preventDefault();
 
-          const {min, max, currency, ...newJob} = initialData;
-          newJob.salaryRange = {min, max, currency};
-          newJob.requirements = newJob.requirements.split('\n');
-          newJob.responsibilities = newJob.responsibilities.split('\n');
-          console.log(newJob);
+    const formData = new FormData(e.target);
+    const initialData = Object.fromEntries(formData.entries());
+    console.log(initialData);
 
-          fetch('https://job-server-zeta.vercel.app/jobs', {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json'
-            },
-            body: JSON.stringify(newJob)
-          })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-          })
-     }
+    const { min, max, currency, ...newJob } = initialData;
+    newJob.salaryRange = { min: parseInt(min), max: parseInt(max), currency };
+    newJob.requirements = newJob.requirements.split("\n");
+    newJob.responsibilities = newJob.responsibilities.split("\n");
+    console.log(newJob);
+
+    fetch("https://job-portal-27e9b.web.app/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   return (
     <div className="w-9/12 mx-auto">
       <div className="card bg-base-100 w-full shadow-2xl">
@@ -63,10 +65,12 @@ const AddJob = (props) => {
             <label className="label">
               <span className="label-text">Job type</span>
             </label>
-            <select defaultValue='pick the type' name="job_type" className="select select-ghost w-full max-w-xs">
-              <option disabled >
-                Pick the Job type
-              </option>
+            <select
+              defaultValue="pick the type"
+              name="job_type"
+              className="select select-ghost w-full max-w-xs"
+            >
+              <option disabled>Pick the Job type</option>
               <option>Full-time</option>
               <option>Part-time</option>
               <option>Intern</option>
@@ -77,10 +81,12 @@ const AddJob = (props) => {
             <label className="label">
               <span className="label-text">Job Field</span>
             </label>
-            <select defaultValue='pick the field' name="job_field" className="select select-ghost w-full max-w-xs">
-              <option disabled>
-                Pick the Job Field
-              </option>
+            <select
+              defaultValue="pick the field"
+              name="job_field"
+              className="select select-ghost w-full max-w-xs"
+            >
+              <option disabled>Pick the Job Field</option>
               <option>Engineering</option>
               <option>Marketing</option>
               <option>Finance</option>
@@ -113,10 +119,12 @@ const AddJob = (props) => {
               />
             </div>
             <div className="form-control">
-              <select defaultValue="Currency" name="currency" className="select select-ghost w-full max-w-xs">
-                <option disabled>
-                  Currency
-                </option>
+              <select
+                defaultValue="Currency"
+                name="currency"
+                className="select select-ghost w-full max-w-xs"
+              >
+                <option disabled>Currency</option>
                 <option>BDT</option>
                 <option>USD</option>
                 <option>INR</option>
@@ -173,8 +181,8 @@ const AddJob = (props) => {
               required
             ></textarea>
           </div>
-           {/*HR Name*/}
-           <div className="form-control">
+          {/*HR Name*/}
+          <div className="form-control">
             <label className="label">
               <span className="label-text">HR Name</span>
             </label>
@@ -186,21 +194,23 @@ const AddJob = (props) => {
               required
             />
           </div>
-           {/*HR email*/}
-           <div className="form-control">
+          {/*HR email*/}
+          <div className="form-control">
             <label className="label">
               <span className="label-text">HR Email</span>
             </label>
             <input
+              readOnly
               type="text"
+              defaultValue={user?.email}
               name="hr_email"
               placeholder="HR email"
               className="input input-bordered"
               required
             />
           </div>
-           {/*Company logo*/}
-           <div className="form-control">
+          {/*Company logo*/}
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Company Logo</span>
             </label>
@@ -212,8 +222,8 @@ const AddJob = (props) => {
               required
             />
           </div>
-           {/*deadline*/}
-           <div className="form-control">
+          {/*deadline*/}
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Deadline</span>
             </label>

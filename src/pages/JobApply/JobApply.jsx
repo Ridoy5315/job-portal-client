@@ -27,7 +27,7 @@ const JobApply = (props) => {
       resume,
     };
 
-    fetch("https://job-server-zeta.vercel.app/job-applications", {
+    fetch("https://job-portal-27e9b.web.app/job-applications", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -9,12 +9,12 @@ const MyAppliactions = (props) => {
   const [jobs, setJobs] = useState([]);
   const axiosSecure = useAxiosInstance();
   useEffect(() => {
-    // fetch(`https://job-server-zeta.vercel.app/job-application?email=${user.email}`)
+    // fetch(`https://job-portal-27e9b.web.app/job-application?email=${user.email}`)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     setJobs(data);
     //   });
-    // axios.get(`https://job-server-zeta.vercel.app/job-application?email=${user.email}`, {withCredentials: true})
+    // axios.get(`https://job-portal-27e9b.web.app/job-application?email=${user.email}`, {withCredentials: true})
     // .then(res => {
     //   console.log(res.data)
     //   setJobs(res.data)

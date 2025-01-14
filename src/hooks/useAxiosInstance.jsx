@@ -4,7 +4,7 @@ import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 const axiosInstance = axios.create({
-     baseURL: 'https://job-server-zeta.vercel.app',
+     baseURL: 'https://job-portal-27e9b.web.app',
      withCredentials: true
 })
 const useAxiosInstance = () => {
@@ -28,7 +28,7 @@ const useAxiosInstance = () => {
                }
                return Promise.reject(error);
           })
-     }, [])
+     }, [navigate, signOutUser])
      return axiosInstance;
 };
 
